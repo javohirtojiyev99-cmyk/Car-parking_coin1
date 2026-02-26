@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Parkin Coin</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Orbitron', sans-serif;
+        background-color: #1a1a1a;
+        color: white;
+        text-align: center;
+        padding: 50px;
+    }
+    h1 {
+        font-size: 3em;
+        margin-bottom: 40px;
+        animation: glow 1.5s infinite alternate;
+    }
+    button {
+        padding: 12px 25px;
+        font-size: 18px;
+        margin: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        background-color: #ff9800;
+        color: white;
+        transition: 0.3s;
+        box-shadow: 0 0 10px #ff9800;
+        animation: glowBtn 1.5s infinite alternate;
+    }
+    button:hover {
+        background-color: #e68a00;
+    }
+    #coins {
+        margin-top: 30px;
+    }
+    .coin-card {
+        background-color: #222;
+        padding: 15px 20px;
+        margin: 15px auto;
+        border-radius: 12px;
+        box-shadow: 0 0 10px #ff9800;
+        animation: glow 1.5s infinite alternate;
+        width: 300px;
+    }
+    #output {
+        margin-top: 30px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 5px #ff9800, 0 0 10px #ff9800; }
+        to { text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00; }
+    }
+    @keyframes glowBtn {
+        from { box-shadow: 0 0 5px #ff9800, 0 0 10px #ff9800; }
+        to { box-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00; }
+    }
+</style>
+</head>
+<body>
+
+<h1 id="title">CAR PARKIN COIN🌟</h1>
+<button id="showCoinsBtn">Narxlarni Ko‘rish</button>
+
+<div id="coins"></div>
+<div id="output"></div>
+
+<script>
+const coins = [
+    {name: "30k coin🟡", price: "11 ming so’m💰"},
+    {name: "40k coin🟡", price: "12 ming so'm💰"},
+    {name: "50k coin🟡", price: "13 ming so'm💰"},
+    {name: "100k coin🟡", price: "15 ming so'm💰"},
+    {name: "300k coin🟡", price: "18 ming so'm💰"},
+    {name: "500k coin🟡", price: "20 ming so'm💰"},
+    {name: "O'yin puli🟩50million🟢", price: "10 ming so'm💰"}
+];
+
+document.getElementById("showCoinsBtn").addEventListener("click", function() {
+    document.getElementById("title").style.display = "none";
+    this.style.display = "none";
+
+    const coinsDiv = document.getElementById("coins");
+    coinsDiv.innerHTML = "";
+
+    coins.forEach(coin => {
+        const div = document.createElement("div");
+        div.className = "coin-card";
+        div.innerHTML = `
+            ${coin.name} - ${coin.price} <br>
+            <button onclick="buy('${coin.name}')">Sotib olish</button>
+        `;
+        coinsDiv.appendChild(div);
+    });
+});
+
+function buy(coinName) {
+    // Barcha coin kartalarni yashirish
+    document.getElementById("coins").style.display = "none";
+
+    // Telegram profilingizga yo'naltirish
+    const telegramUsername = "TOJIYEV_722";
+    const message = encodeURIComponent(`Salom, men ${coinName} olmoqchiman`);
+    const telegramLink = `https://t.me/${telegramUsername}?text=${message}`;
+
+    // Telegram chat ochiladi
+    window.open(telegramLink, "_blank");
+
+    document.getElementById("output").innerText = `Siz ${coinName} sotib olmoqchisiz. Telegram ochilmoqda...`;
+}
+</script>
+
+</body>
+</html>
